@@ -5,6 +5,8 @@ import { Auth } from "./js/auth.js";
 import { TreeEditor } from "./js/tree.js";
 import { OpenAI } from "./js/utils/gptApi.js";
 
+
+
 const tree = new TreeEditor()
 const api = "TfdHXlLlvulMCEeqtlwIT3BlbkFJi15tP9s6cgSfbcvDeawA"
 // const api = new OpenAI("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");
@@ -18,7 +20,7 @@ const sidebar = document.getElementById('sidebar');
 let saveTimeoutId;
 let selectedDocId
 let timeoutId
-const url = "http://localhost:3000"
+const baseUrl = "http://localhost:3000"
 let syncTimeout = null
 let clickedDoc
 
@@ -68,7 +70,7 @@ function createDropdown() {
 async function apiRequest(url, method, data) {
 
   try {
-    const response = await fetch(url, {
+    const response = await fetch(baseUrl+url, {
       method: method,
       headers: {
         'Content-Type': 'application/json',

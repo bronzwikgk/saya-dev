@@ -3,6 +3,7 @@ import { IndexedDB } from "./utils/idb.js";
 class Auth {
     constructor() {
         this.token = localStorage.getItem('token');
+        this.baseUrl = ""
     }
 
     async signIn(email, password) {
@@ -13,7 +14,7 @@ class Auth {
             return false;
         }
         try {
-            const response = await fetch('/login', {
+            const response = await fetch(this.baseUrl+'/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ class Auth {
         }
 
         try {
-            const response = await fetch('/register', {
+            const response = await fetch(this.baseUrl+'/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

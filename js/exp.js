@@ -5,6 +5,7 @@ import { Loader } from "./utils/loader.js";
 import { Auth } from "./auth.js";
 import { TreeEditor } from "./tree.js";
 
+const baseUrl = ""
 const auth = new Auth()
 const tree = new TreeEditor()
 
@@ -25,7 +26,7 @@ async function initializeDatabase() {
 async function apiRequest(url, method, data) {
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(baseUrl+url, {
             method: method,
             headers: {
                 'Content-Type': 'application/json',
