@@ -896,7 +896,7 @@ function setupEventListener() {
   document.getElementById("logOutBtn").addEventListener("click", logOut)
   document.getElementById("explorer").addEventListener("click",()=>{
     
-    window.location.href = "/"
+    window.location.href = "/saya-dev/"
   })
 
 }
