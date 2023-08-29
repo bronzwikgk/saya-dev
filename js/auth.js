@@ -3,7 +3,7 @@ import { IndexedDB } from "./utils/idb.js";
 class Auth {
     constructor() {
         this.token = localStorage.getItem('token');
-        this.baseUrl = ""
+        this.baseUrl = "https://tiny-tan-jay-fez.cyclic.app"
     }
 
     async signIn(email, password) {

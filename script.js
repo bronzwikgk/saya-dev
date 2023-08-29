@@ -20,7 +20,7 @@ const sidebar = document.getElementById('sidebar');
 let saveTimeoutId;
 let selectedDocId
 let timeoutId
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://tiny-tan-jay-fez.cyclic.app"
 let syncTimeout = null
 let clickedDoc
 

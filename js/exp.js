@@ -5,7 +5,7 @@ import { Loader } from "./utils/loader.js";
 import { Auth } from "./auth.js";
 import { TreeEditor } from "./tree.js";
 
-const baseUrl = ""
+const baseUrl = "https://tiny-tan-jay-fez.cyclic.app"
 const auth = new Auth()
 const tree = new TreeEditor()
 
