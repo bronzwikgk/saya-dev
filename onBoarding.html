@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onboarding</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+</head>
+<style>
+    body{
+        font-family: 'Noto Sans', sans-serif;
+    }
+    .onboarding-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+.onboarding-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0rem;
+}
+
+.onboarding-container h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.onboarding-container p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    max-width: 500px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;  /* Increased font weight */
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Shadow for depth */
+    transition: background-color 0.3s, transform 0.2s;  /* Transition effect */
+}
+
+button:hover {
+    background-color: #555;  /* Darker shade on hover */
+    transform: translateY(-2px);  /* Slight upward movement on hover */
+}
+
+button:active {
+    transform: translateY(0);  /* Button returns to original position when clicked */
+}
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+.onboarding-container {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 50px auto;
+}
+
+h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Profile Setup */
+input[type="text"],
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Module Selection */
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Theme Selection */
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Button Styles */
+button {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #5764ed;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #4453b7;
+}
+
+/* Brand Header */
+.brand-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background: linear-gradient(90deg, rgba(66,133,244,1) 0%, rgba(52,183,241,1) 50%, rgba(59,89,152,1) 100%);
+    border-radius: 10px 10px 0 0; /* Rounded corners only at the top */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Toggle (Sign Up/Sign In) */
+.form-toggle button {
+    flex: 1;
+    background-color: transparent;
+    color: #5764ed;
+    font-weight: 500;
+    border: none;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.form-toggle button.active {
+    border-bottom-color: #5764ed;
+}
+
+label{
+    text-align: left;
+}
+
+
+
+</style>
+<body>
+    <body>
+        <div class="onboarding-container">
+            <h2>Step <span id="step-number">1</span> of 3</h2>
+            <div id="step-content">
+                
+                <h3>Setup Your Profile</h3>
+                <input type="text" placeholder="Full Name" required>
+                <label for="profile-pic">Upload Profile Picture:</label>
+                <input type="file" id="profile-pic">
+            </div>
+            <button id="next-button">Next</button>
+        </div>
+    
+        <script src="onboarding.js"></script>
+    </body>
+    <script>
+let step = 1;
+const stepContent = document.getElementById('step-content');
+const stepNumber = document.getElementById('step-number');
+const nextButton = document.getElementById('next-button');
+
+nextButton.addEventListener('click', function() {
+    step++;
+    if (step === 2) {
+        stepContent.innerHTML = `
+        <h3>Select Modules</h3>
+        <label><input type="checkbox" name="module" value="Notes"> Notes</label>
+        <label><input type="checkbox" name="module" value="Tasks"> Tasks</label>
+        <label><input type="checkbox" name="module" value="Calendar"> Calendar</label>
+        <!-- Add more modules as needed -->
+        `;
+    } else if (step === 3) {
+        stepContent.innerHTML = `
+        <h3>Select a Theme</h3>
+        <label><input type="radio" name="theme" value="Light"> Light</label>
+        <label><input type="radio" name="theme" value="Dark"> Dark</label>
+        <label><input type="radio" name="theme" value="Colorful"> Colorful</label>
+        `;
+        nextButton.textContent = 'Finish';
+    } else {
+        window.location.href = 'index.html';  // Redirects to the main landing page after onboarding
+    }
+    stepNumber.textContent = step;
+});
+
+    </script>
+</body>
+</html>

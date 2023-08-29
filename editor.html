@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html data-theme="keen">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/Abhisek730/cddCdn@main/styles.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="loader-wrapper">
+      <div class="loader"></div>
+  </div>
+  
+    <div class="container" id="app" sidebar-full>
+      <input sidebarinput="" id="slide-sidebar" type="checkbox" role="button" />
+      <label sidebartoggle="" for="slide-sidebar"
+        ><span><i class="ri-arrow-left-line" id="toggle-aside"></i></span
+      ></label>
+      <aside class="sidebar" id="sidebar"></aside>
+      <div id="main" class="main">
+        <header class="navbar" id="navbar" nav nav-fix></header>
+
+        <div id="doc-content"><div id="kanban-container"></div></div>
+      </div>
+      <div id="openaiSidebar" class="sidebar sidebarOpenAi">
+        <!-- Form contents go here --><form id="openaiForm">
+    <label for="useCase">Use Case:</label>
+    <select id="useCase" >
+        <!-- Add your options here -->
+    </select>
+
+    <label for="outputType">Output Type:</label>
+    <select id="outputType" required>
+        <option value="prompt">Prompt</option>
+        <!-- Add your other options here -->
+    </select>
+
+    <!-- Add more fields as needed -->
+
+    <button type="submit">Send</button>
+</form>
+
+    </div>
+    </div>
+    <!-- Share Modal -->
+    <div id="shareModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h3>Share Document</h3>
+
+        <label for="shareEmail">Email</label>
+        <input type="text" id="shareEmail" name="shareEmail" required />
+
+        <label for="shareRole">Role:</label>
+        <select id="shareRole">
+          <option value="viewer">Viewer</option>
+          <option value="editor">Editor</option>
+        </select>
+
+        <button id="share-button">Share</button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script type="module" src="./handlebar/index.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

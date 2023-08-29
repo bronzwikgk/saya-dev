@@ -1,0 +1,507 @@
+
+
+body {
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.87); /* Material design text color */
+    background-color: #FAFAFA; /* Material design background color */
+    overflow: hidden;
+    width: 100vw;
+    
+    box-sizing: border-box;
+font-family: 'Noto Sans', sans-serif;
+
+  }
+  .navbar{
+    z-index: 100;
+  }
+
+  .auth-container{
+    height: fit-content;
+  }
+  .auth-container h2{
+    font-size: 3rem;
+  }
+
+
+
+  .container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+.sidebar {
+    /* width: 300px; */
+    
+    height: 100%;
+    overflow-y: auto;
+    background-color: #F8F9FA;
+    border-right: 1px solid #E0E0E0; /* Material design divider color */
+    
+    padding-top: 50px;
+}
+
+#main {
+  width: calc(100vw - var(--sidebar-width));
+    flex-grow: 1;
+    background-color: white;
+    overflow-y: auto;
+  }
+
+
+.doc-title {
+cursor: pointer;
+max-width: 140px;
+}
+
+.doc.selected > .doc-title {
+font-weight: bold;
+}
+.doc-title {
+display: inline-block;
+font-size: 15px;
+
+}
+
+.doc-icon{
+  margin-right: 5px;
+  position: relative;
+top: 2px;
+}
+
+.add-node-button {
+  position: absolute;
+  right: 15px;
+display: inline-block;
+
+padding: 0 5px;
+border: none;
+background:none;
+color: black;
+cursor: pointer;
+font-weight: bolder;
+line-height: 1.5;
+text-align: center;
+white-space: nowrap;
+vertical-align: middle;
+border-radius: 0.25rem;
+
+}
+
+.doc {
+    margin: 0.2em 0;
+  }
+  
+  .doc .doc-children {
+    margin-left: 1em;
+    transition: height 0.3s ease;
+  }
+  
+  .expand-collapse-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+    color: #757A7D;
+    font-size: 12px;
+    position: relative;
+    bottom: 2px;
+    margin-right: 10px;
+  }
+  .expand-collapse-button:hover{
+    
+    color: black;
+  }
+  
+ 
+  .doc-title {
+    cursor: pointer;
+  }
+  
+  
+
+#doc-content {
+  width: 100%;
+  height: calc(90% - 1.5em); /* subtract the margin and button height */
+  box-sizing: border-box;
+  padding: 4em 10rem;
+  
+  margin-bottom: 1em;
+  resize: none;
+}
+
+#save-button {
+    background-color: #4CAF50; /* Material design light green */
+    color: white;
+    border: none;
+    padding: 0.5em 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+
+  #save-button:hover {
+    background-color: #45a049;
+  }
+
+  .bullet-point {
+    /* your existing styles here... */
+    /* display: flex; */
+    gap: 1rem    ;
+    align-items: flex-start;
+    position: relative; /* this allows absolute positioning within this element */
+    
+    font-size: 18px;
+}
+
+.bullet-icon{
+  font-size: 8px;
+  margin-right: 10px;
+  border: 3px solid #fff;
+  border-radius: 50px;
+  /* border-radius: 50px;
+  min-width: 8px;
+  height: 8px;
+  margin-top: 12px; */
+}
+.bullet-icon:hover{
+  background-color: #C0C5C7;
+  border: 3px solid #C0C5C7;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+/* 
+.bullet-point::before {
+    content: '•';
+    position: absolute;
+    left: -5px; 
+    color: #000;
+    font-weight: bolder;
+}
+ */
+
+ .childrenContainer{
+  margin-left: 30px;
+  
+ }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 4px;
+  overflow: hidden;
+  right: 0;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropbtn {
+  background-color: #3c8dbc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+.dropbtn:hover {
+  background-color: #2980b9;
+}
+
+.bullet-head{
+font-size:35px;
+  font-weight: bolder;
+
+}
+
+button {
+  padding: 0.5rem;
+}
+
+[contenteditable] {
+  outline: none;
+}
+
+.navIc{
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.kanban-card {
+  width: 200px;
+  height: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 10px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fff;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.kanban-card h3 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.kanban-card:hover {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+.doc{
+  padding: 0px 5px;
+}
+/* Hide the plus icon by default */
+.add-node-button {
+  display: none;
+  transition: opacity 0.2s; /* for smooth transition */
+}
+
+/* Show the plus icon when the corresponding doc-title is hovered */
+.doc-children div:hover > .add-node-button,
+.add-node-button:hover {
+  display: inline-block;
+  opacity: 1; /* fully visible */
+}
+
+/* Change the background color of .doc and make the plus icon visible when .doc is hovered */
+.doc-children > .doc:hover {
+    background-color: #ccc;
+    color: #fff;
+}
+
+
+
+
+
+/* Hide the three-dot menu by default */
+.three-dot-menu {
+  visibility: hidden;
+  position: relative;
+  top: 2px;
+  
+
+  /* Additional styling as needed, for positioning, etc. */
+}
+
+/* Display the three-dot menu when its parent `.doc` is hovered */
+.bullet-point:hover > .three-dot-menu {
+  visibility: visible;
+}
+
+/* Hide the menu options by default */
+.menu-options {
+  display: none;
+  /* Additional styling for the dropdown menu, e.g., background color, border, etc. */
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  width: 200px;
+  z-index: 10;
+}
+
+/* Display the menu options when the three-dot menu is hovered */
+.three-dot-menu:hover .menu-options {
+  display: block;
+}
+
+.menu-options a {
+  display: block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-options a:hover {
+  background-color: #f5f5f5;
+}
+
+
+
+
+
+
+
+/* Authentication pages */
+.auth-container {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+form{
+  padding: 20px;
+}
+.auth-container h2 {
+  margin-bottom: 20px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-container button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.auth-container button:hover {
+  background-color: #0056b3;
+}
+
+.sidebarOpenAi {
+  position: fixed;
+  top: 60px;
+  right: -400px;  /* Initially off the screen */
+  width: 400px;
+  height: 100%;
+  background-color: #f7f7f7;
+  overflow-y: auto;
+  transition: right 0.3s;  /* Smooth transition */
+}
+
+.sidebar.open form{
+  box-shadow: none;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+
+/* Share Modal */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 30%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+#kanban-container{
+  display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+
+/* loader css */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255 255 255); /* You can adjust the background color and opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensuring the loader appears on top of other elements */
+}
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+a{
+  color: inherit;
+  text-decoration: none;
+}
+a:hover{
+color: inherit;
+text-decoration: none;
+border: none;
+}
+a:visited{
+  color: inherit;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+@media screen and (max-width:700px) {
+  #doc-content{
+    padding:4rem 2rem ;
+  }
+}
+
+@media screen and (max-width: 1000px){
+input[sidebarInput]:checked ~ aside {
+    padding-top: 40px;
+}
+}
