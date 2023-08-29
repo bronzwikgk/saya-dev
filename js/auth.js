@@ -87,7 +87,7 @@ class Auth {
         // Repeat for each object store you want to clear
         try {
             await IndexedDB.DeleteStore("MyDatabase", "documents");
-            window.location.href = '/auth.html'; 
+            window.location.href = '/saya-dev/auth.html'; 
             console.log("Successfully logged out and cleared data");
         } catch (error) {
             console.error("Error during logout:", error);
@@ -111,7 +111,7 @@ const auth = new Auth()
       const password = document.getElementById('login-password').value;
 
       if (await auth.signIn(email, password)) {
-        window.location.href = "/"
+        window.location.href = "/saya-dev/"
         alert('Signed in successfully!');
         // Redirect or update UI
       } else {
@@ -131,7 +131,7 @@ const auth = new Auth()
       const password = document.getElementById('password').value;
 
       if (await auth.signUp(username, email, password)) {
-        window.location.href = "/"
+        window.location.href = "/saya-dev/"
         alert('Signed up successfully!');
         // Redirect or update UI
       } else {

@@ -70,7 +70,7 @@ async function fetchRootDocuments() {
 function checkAuthentication() {
     const token = localStorage.getItem('token');
     if (!token) {
-        window.location.href = '/landingPage.html';  // Redirect to sign-in page
+        window.location.href = '/saya-dev/landingPage.html';  // Redirect to sign-in page
     }
 }
 
@@ -104,7 +104,7 @@ async function createNewDocument() {
     console.log(doc);
     // navigate user to new doucment page 
     if (doc && doc.entityId) {
-        window.location.href = `/editor.html#/${doc.entityId}`;
+        window.location.href = `/saya-dev/editor.html#/${doc.entityId}`;
     } else {
         alert("Failed to create a new document.");
     }
