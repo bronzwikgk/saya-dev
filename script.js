@@ -435,7 +435,7 @@ function setUpModal() {
 
 async function shareDocument(req) {
   try {
-    const data = await apiRequest('http://localhost:5000/shareDocument', 'POST', req)
+    const data = await apiRequest('/shareDocument', 'POST', req)
     modal.style.display = "none"
   } catch (error) {
     alert('Failed to share document: ' + error.message);
