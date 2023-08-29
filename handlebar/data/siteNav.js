@@ -41,14 +41,14 @@ const siteNavData = {
       },
       {
         name:"SignUp",
-        href:"/auth.html",
+        href:"/saya-dev/auth.html",
         eid:"/signUp",
         action:"get",
         method:"get"
       },
       {
         name:"SignIn",
-        href:"/auth.html",
+        href:"/saya-dev/auth.html",
         eid:"/signIn",
         action:"get",
         method:"get"
