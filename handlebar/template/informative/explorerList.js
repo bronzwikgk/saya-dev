@@ -5,7 +5,7 @@ const explorerList = `
                 <input type="checkbox">
                 <i icn-lg-bl="" class="ri-file-text-line"></i>
                 <div>
-                  <h6><a href="/editor.html#/{{this.entityId}}">{{this.title}}</a></h6>
+                  <h6><a href="/saya-dev/editor.html#/{{this.entityId}}">{{this.title}}</a></h6>
                   <p small-dark="">{{moto}} | content: <span>{{content}}</span> | logo: <span>{{logo}}</span></p>
                 </div>
               </article>
