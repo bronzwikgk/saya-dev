@@ -48,11 +48,9 @@ class TreeEditor {
     async displayMainNode(docId) {
         // Fetch the documents from the server
         let doc = await IndexedDB.GetByID('MyDatabase', 'documents', docId);
-
         // Get the main content area
         this.main.dataset.id = docId
         this.main.innerHTML = '';  // Clear the main content area
-
         // create and append a div for parent 
         const parentDiv = document.createElement('div');
         parentDiv.contentEditable = true;
@@ -103,7 +101,7 @@ class TreeEditor {
         bulletDiv.classList.add('bullet-point');
 
         // create menu 
-        const threeDotMenu = this.addThreeDotMenu()
+        const threeDotMenu = this.addThreeDotMenu(entityId)
         bulletDiv.appendChild(threeDotMenu)
 
         const expandIcon = this.createExpandIcon(hasChildren);
@@ -154,7 +152,24 @@ class TreeEditor {
         return text;
     }
 
-    addThreeDotMenu() {
+    addThreeDotMenu(nodeId) {
+        let menu = [
+            {
+                icon: "ri-star-fill",
+                title: "Open Ai",
+                id:"openaiButton"
+            },
+            {
+                icon: "ri-star-fill",
+                title: "option 2",
+            },
+            {
+                icon: "ri-delete-bin-line",
+                title: "Delete",
+                id: "deleteNode",
+                dataId: nodeId
+            }
+        ]
         const threeDotMenu = document.createElement('span');
         threeDotMenu.classList.add('three-dot-menu');
         const icon = document.createElement('i');
@@ -162,14 +177,20 @@ class TreeEditor {
         threeDotMenu.appendChild(icon);
         const menuOptions = document.createElement('div');
         menuOptions.classList.add('menu-options');
-        ["Option 1", "Option 2", "Option 3"].forEach(optionText => {
+
+        menu.forEach(opt => {
             const option = document.createElement('a');
-            option.href = "#";
-            option.textContent = optionText;
+            // option.href = "#";
+            option.innerHTML = `<i class="${opt.icon}"></i>  ${opt.title}`;
+            option.classList.add(opt.id)
+            if (opt.dataId) {
+                option.dataset.id = opt.dataId
+            }
             menuOptions.appendChild(option);
         });
         threeDotMenu.appendChild(menuOptions);
         return threeDotMenu
+
     }
 
 
@@ -316,12 +337,43 @@ class TreeEditor {
                 clearTimeout(this.syncTimeout);
             }
             // Schedule a sync with the server 10 seconds after saveChanges completes
-            this.syncTimeout = setTimeout(this.syncWithServer, 10 * 500);  // 10 seconds in milliseconds
+            this.syncTimeout = setTimeout(this.syncWithServer(), 10 * 500);  // 10 seconds in milliseconds
             console.log('Document updated successfully in IndexedDB.');
         } catch (error) {
             console.error('Error updating document in IndexedDB:', error);
         }
 
+    }
+
+    
+    async deleteNode(nodeId) {
+        
+
+        // 3. Delete from IndexedDB
+        try {
+            await IndexedDB.DeleteById('MyDatabase', 'documents', nodeId);
+        } catch (error) {
+            console.error(`Error deleting node from IndexedDB with ID ${nodeId}:`, error);
+        }
+
+        // 4. Delete from your backend
+        try {
+            await this.apiRequest(`/api/deleteNode/${nodeId}`, 'DELETE');
+            console.log(`Node with ID ${nodeId} deleted successfully.`);
+        } catch (error) {
+            console.error(`Error deleting node from backend with ID ${nodeId}:`, error);
+        }
+        // 1. Get the node element by its ID
+        const nodeElement = document.querySelector(`[data-id="${nodeId}"]`);
+
+        // Check if the node exists
+        if (!nodeElement) {
+            console.error(`Node with ID ${nodeId} not found.`);
+            return;
+        }
+
+        // 2. Remove the node from the DOM
+        nodeElement.remove();
     }
 
     // async serverToClient() {
@@ -362,53 +414,53 @@ class TreeEditor {
     //     }
     // }
 
-    // async syncWithServer() {
-    //     if (!navigator.onLine) {
-    //         console.log("Offline. Sync postponed.");
-    //         return;
-    //     }
+    async syncWithServer() {
+        if (!navigator.onLine) {
+            console.log("Offline. Sync postponed.");
+            return;
+        }
 
-    //     try {
-    //         const unsyncedDocs = await IndexedDB.GetAll('MyDatabase', 'documents');
+        try {
+            const unsyncedDocs = await IndexedDB.GetAll('MyDatabase', 'documents');
 
-    //         const newDocsToSync = [];
-    //         const updatedDocsToSync = [];
+            const newDocsToSync = [];
+            const updatedDocsToSync = [];
 
-    //         for (let doc of unsyncedDocs) {
-    //             if (doc.syncStatus === "new") {
-    //                 newDocsToSync.push(doc);
-    //             } else if (doc.syncStatus === "updated") {
-    //                 updatedDocsToSync.push(doc);
-    //             }
-    //             doc.lastModified = Date.now();
-    //             doc.syncStatus = "synced";
-    //         }
+            for (let doc of unsyncedDocs) {
+                if (doc.syncStatus === "new") {
+                    newDocsToSync.push(doc);
+                } else if (doc.syncStatus === "updated") {
+                    updatedDocsToSync.push(doc);
+                }
+                doc.lastModified = Date.now();
+                doc.syncStatus = "synced";
+            }
 
-    //         const requests = [];
-    //         if (newDocsToSync.length) {
-    //             requests.push(this.apiRequest('/api/uploadDocuments', 'POST', newDocsToSync));
-    //         }
-    //         if (updatedDocsToSync.length) {
-    //             requests.push(this.apiRequest('/api/updateDocuments', 'PUT', updatedDocsToSync));
-    //         }
+            const requests = [];
+            if (newDocsToSync.length) {
+                requests.push(this.apiRequest('/api/uploadDocuments', 'POST', newDocsToSync));
+            }
+            if (updatedDocsToSync.length) {
+                requests.push(this.apiRequest('/api/updateDocuments', 'PUT', updatedDocsToSync));
+            }
 
-    //         await Promise.all(requests);
+            await Promise.all(requests);
 
-    //         if (unsyncedDocs.length) {
-    //             for (let doc of unsyncedDocs) {
-    //                 doc.lastModified = Date.now();
-    //                 doc.syncStatus = "synced";
+            if (unsyncedDocs.length) {
+                for (let doc of unsyncedDocs) {
+                    doc.lastModified = Date.now();
+                    doc.syncStatus = "synced";
 
-    //                 await IndexedDB.Update('MyDatabase', 'documents', doc);
-    //             }
+                    await IndexedDB.Update('MyDatabase', 'documents', doc);
+                }
 
-    //         }
+            }
 
-    //         console.log('Synced with server successfully.');
-    //     } catch (error) {
-    //         console.error('Error syncing with server:', error);
-    //     }
-    // }
+            console.log('Synced with server successfully.');
+        } catch (error) {
+            console.error('Error syncing with server:', error);
+        }
+    }
 
 
     async apiRequest(url, method, data) {

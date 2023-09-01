@@ -4,9 +4,11 @@ import { generateUniqueId } from "./js/utils/uniqueId.js";
 import { Auth } from "./js/auth.js";
 import { TreeEditor } from "./js/tree.js";
 import { OpenAI } from "./js/utils/gptApi.js";
+import { devPipeline } from "./js/utils/devPipeline.js";
 
 
-
+const devPipe = new devPipeline()
+devPipe.initTabs()
 const tree = new TreeEditor()
 const api = "TfdHXlLlvulMCEeqtlwIT3BlbkFJi15tP9s6cgSfbcvDeawA"
 // const api = new OpenAI("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");
@@ -70,7 +72,7 @@ function createDropdown() {
 async function apiRequest(url, method, data) {
 
   try {
-    const response = await fetch(baseUrl+url, {
+    const response = await fetch(baseUrl + url, {
       method: method,
       headers: {
         'Content-Type': 'application/json',
@@ -314,37 +316,6 @@ async function renderTree(parentId, parentElement) {
   }
 }
 
-function addThreeDotMenu() {
-
-  const threeDotMenu = document.createElement('span');
-  threeDotMenu.classList.add('three-dot-menu');
-
-  const icon = document.createElement('i');
-  icon.classList.add('ri-more-fill');
-  threeDotMenu.appendChild(icon);
-
-  const menuOptions = document.createElement('div');
-  menuOptions.classList.add('menu-options');
-  ["Option 1", "Option 2", "Option 3"].forEach(optionText => {
-    const option = document.createElement('a');
-    option.href = "#";
-    option.textContent = optionText;
-    menuOptions.appendChild(option);
-  });
-
-  threeDotMenu.appendChild(menuOptions);
-  return threeDotMenu
-
-
-
-
-
-
-}
-
-// Call the function to add the three-dot menu
-addThreeDotMenu();
-
 
 // Function to create kanban cards for startup screen
 function renderKanbanCard(doc) {
@@ -538,91 +509,6 @@ function logOut() {
   auth.signOut()
 }
 
-async function chatWithGPT(apiKey, userMessage) {
-  const url = "https://api.openai.com/v1/chat/completions";
-
-  const headers = {
-    "Content-Type": "application/json",
-    "Authorization": `Bearer ${api}`
-  };
-
-  const data = {
-    model: "gpt-3.5-turbo",
-    messages: [
-      {
-        role: "system",
-        content: "You are a helpful assistant."
-      },
-      {
-        role: "user",
-        content: userMessage
-      }
-    ]
-  };
-
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: headers,
-      body: JSON.stringify(data)
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const responseData = await response.json();
-    console.log(responseData);
-    return responseData.choices[0].message.content;
-  } catch (error) {
-    console.error("There was a problem with the fetch operation:", error.message);
-  }
-}
-
-function insertOneBullet(elm, entityId, title) {
-  console.log(title);
-  const childDiv = document.createElement('div');
-  childDiv.dataset.id = entityId;
-  childDiv.classList.add('bullet-point');
-  const expandIcon = document.createElement('button');
-  expandIcon.textContent = '► ';
-  expandIcon.classList.add('expand-collapse-button');
-  childDiv.appendChild(expandIcon);
-  expandIcon.style.visibility = "hidden"
-
-  // if (child.children && child.children.length > 0) {
-  //   // Add an expand icon
-  //   expandIcon.style.visibility = "visible"
-  // }
-
-  // Add a bullet icon for child
-  const bulletIcon = document.createElement('i');
-  bulletIcon.classList.add("ri-checkbox-blank-circle-fill")
-
-  bulletIcon.classList.add("bullet-icon")
-  // bulletIcon.innerHTML = '<i class="ri-record-circle-fill bullet-icon"></i>'
-  childDiv.appendChild(bulletIcon);
-
-  const childText = document.createElement('span');
-  childText.contentEditable = true
-  childText.dataset.id = entityId;
-  if (title) {
-    childText.innerText = title
-  }
-  childDiv.appendChild(childText);
-
-  // Focus on the new bullet point
-  setTimeout(() => childText.focus(), 0);
-  console.log(elm.nextSibling);
-  //  if (elm.nextSibling) {
-  //   elm.insertBefore(childDiv, elm.nextSibling);
-  //  } else {
-  //   elm.appendChild(childDiv);
-  //  }
-  elm.appendChild(childDiv)
-
-}
-
 function setupEventListener() {
 
   document.getElementById('openaiForm').addEventListener('submit', async function (e) {
@@ -633,27 +519,22 @@ function setupEventListener() {
     const text = selectedElement.innerText;
     console.log(text);
     try {
-      
-      let data = {prompt:text}
-      let output = await apiRequest("/ask", "POST",data);
+
+      let data = { prompt: text }
+      let output = await apiRequest("/ask", "POST", data);
       console.log(output);
-        if (output.data) {
-          let node =await tree.createNode(output.data, clickedDoc);console.log(node);
-          let bullet = tree.createBulletPoint(node.entityId, node.title)
-          selectedElement.querySelector(".childrenContainer").append(bullet)
-        }
-      
+      if (output.data) {
+        let node = await tree.createNode(output.data, clickedDoc); console.log(node);
+        let bullet = tree.createBulletPoint(node.entityId, node.title)
+        selectedElement.querySelector(".childrenContainer").append(bullet)
+      }
+
 
     } catch (error) {
       console.error("Error sending data to OpenAI:", error);
     }
   });
 
-  document.getElementById('openaiButton').addEventListener('click', function () {
-    
-    const sidebar = document.getElementById('openaiSidebar');
-    sidebar.classList.toggle('open');
-  });
 
 
   window.addEventListener('beforeunload', function (event) {
@@ -782,10 +663,15 @@ function setupEventListener() {
         event.target.parentElement.setAttribute('data-children-fetched', 'true');
         event.target.textContent = '▼';
       }
+    } else if (event.target.classList.contains("deleteNode")) {
+      tree.deleteNode(event.target.dataset.id)
+    }else if(event.target.classList.contains("openaiButton")){
+      
+    const sidebar = document.getElementById('openaiSidebar');
+    sidebar.classList.toggle('open');
+   
     }
   });
-
-
 
   // function to open dropdown
   main.addEventListener('keyup', function (event) {
@@ -891,11 +777,9 @@ function setupEventListener() {
     shareDocument(data);
   });
 
-
-
   document.getElementById("logOutBtn").addEventListener("click", logOut)
-  document.getElementById("explorer").addEventListener("click",()=>{
-    
+  document.getElementById("explorer").addEventListener("click", () => {
+
     window.location.href = "/saya-dev/"
   })
 

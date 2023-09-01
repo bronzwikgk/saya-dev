@@ -329,6 +329,7 @@ button {
 /* Hide the menu options by default */
 .menu-options {
   display: none;
+  top: 10px;
   /* Additional styling for the dropdown menu, e.g., background color, border, etc. */
   position: absolute;
   background-color: #fff;
@@ -402,13 +403,14 @@ form{
 
 .sidebarOpenAi {
   position: fixed;
-  top: 60px;
+  
   right: -400px;  /* Initially off the screen */
   width: 400px;
   height: 100%;
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
   overflow-y: auto;
   transition: right 0.3s;  /* Smooth transition */
+  padding-top: 5px;
 }
 
 .sidebar.open form{
@@ -418,6 +420,58 @@ form{
 .sidebar.open {
   right: 0;
 }
+
+
+
+
+.tabs {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.tab-header {
+  display: flex;
+  background-color: #f5f5f5;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.tab-button:hover {
+  background-color: #ddd;
+}
+
+.tab-button.active {
+  background-color: #f5f5f5;
+  border-bottom: 2px solid #007BFF;
+}
+
+.tab-content {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.tab {
+  display: none;
+}
+
+.tab.active {
+  display: block;
+}
+
+.tab form {
+  background-color: #f5f5f5;
+}
+
+
 
 
 /* Share Modal */
@@ -494,6 +548,13 @@ border: none;
 }
 a:visited{
   color: inherit;
+}
+
+.menu-options a{
+  display: flex;
+  align-items: center;
+  gap: 1rem
+  ;
 }
 
 @keyframes spin {

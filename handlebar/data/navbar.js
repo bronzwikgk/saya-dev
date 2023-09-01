@@ -36,7 +36,7 @@ const navbarData = {
         },
         {
             name: "OpenAi",
-            id:"openaiButton"
+            
         },
         {
             name: "LogOut",
