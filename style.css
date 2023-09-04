@@ -557,6 +557,22 @@ a:visited{
   ;
 }
 
+.text-part {
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.code-part {
+  padding: 10px;
+  background-color: #e8e8e8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Courier New", monospace;
+  white-space: pre-wrap;
+}
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

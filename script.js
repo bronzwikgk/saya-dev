@@ -6,7 +6,7 @@ import { TreeEditor } from "./js/tree.js";
 import { OpenAI } from "./js/utils/gptApi.js";
 import { devPipeline } from "./js/utils/devPipeline.js";
 
-
+let gptUrl = "https://script.google.com/macros/s/AKfycbwLwKRL9JiDQOIoat4cPFHDMZmMciYt3WDtt0NrmCrzijkycW5DLMymzF3ltACR_UxT/exec"
 const devPipe = new devPipeline()
 devPipe.initTabs()
 const tree = new TreeEditor()
@@ -22,7 +22,8 @@ const sidebar = document.getElementById('sidebar');
 let saveTimeoutId;
 let selectedDocId
 let timeoutId
-const baseUrl = "https://tiny-tan-jay-fez.cyclic.app"
+// const baseUrl = "https://tiny-tan-jay-fez.cyclic.app"
+const baseUrl = ""
 let syncTimeout = null
 let clickedDoc
 
@@ -519,9 +520,24 @@ function setupEventListener() {
     const text = selectedElement.innerText;
     console.log(text);
     try {
+      let sheeUrl = "https://script.google.com/macros/s/AKfycbwG9CFoTFhcKnsuvq-gAUQ5JiJkuOP6xwXgge01f5KtNSraYyPdfly2QsXD6EUtQsmG/exec"
 
-      let data = { prompt: text }
-      let output = await apiRequest("/ask", "POST", data);
+
+      let output = await fetch(sheeUrl, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+        headers: {
+          'Content-Type': 'text/plain',
+          "Accept-Charset": "utf-8"
+        },
+        body: JSON.stringify({
+          "model": "gpt-3.5-turbo",
+          "message": text,
+          "someValue": "trail"
+        }
+        )
+      })
+
       console.log(output);
       if (output.data) {
         let node = await tree.createNode(output.data, clickedDoc); console.log(node);
@@ -535,6 +551,121 @@ function setupEventListener() {
     }
   });
 
+
+  function createResNode(entityId, title, hasChildren = false){
+    
+      let res = devPipe.parseGPTResponse(title)
+      let finalHtml = devPipe.constructHTML(res)
+      const bulletDiv = document.createElement('div');
+      bulletDiv.dataset.id = entityId;
+      bulletDiv.classList.add('bullet-point');
+
+      // create menu 
+      const threeDotMenu = tree.addThreeDotMenu(entityId)
+      bulletDiv.appendChild(threeDotMenu)
+
+      const expandIcon =tree.createExpandIcon(hasChildren);
+      bulletDiv.appendChild(expandIcon);
+
+      const bulletIcon = tree.createBulletIcon();
+      bulletDiv.appendChild(bulletIcon);
+
+      if (hasChildren) {
+          // Add an expand icon
+          expandIcon.style.visibility = "visible";
+          bulletIcon.style.border = "3px solid #C0C5C7";
+          bulletIcon.style.backgroundColor = "#C0C5C7"
+      }
+
+      
+      const text = document.createElement('span');
+      text.classList.add("title")
+      text.contentEditable = true
+      text.dataset.id = entityId;
+      if (title) {
+          text.innerHTML = finalHtml;
+      }
+      
+      bulletDiv.appendChild(text);
+
+      const childrenDiv = document.createElement("div");
+      childrenDiv.classList.add("childrenContainer");
+      bulletDiv.appendChild(childrenDiv);
+
+      return bulletDiv;
+  
+  }
+
+  async function sendToGpt(e) {
+
+    e.preventDefault();
+    let formData = new FormData(event.target);
+    let prompt = formData.get("prompt")
+    try {
+      let sheeUrl = "https://script.google.com/macros/s/AKfycbwG9CFoTFhcKnsuvq-gAUQ5JiJkuOP6xwXgge01f5KtNSraYyPdfly2QsXD6EUtQsmG/exec"
+
+
+      let res = await fetch(sheeUrl, {
+        method: "POST", // *GET, POST, PUT, DELETE, etc.
+
+        headers: {
+          'Content-Type': 'text/plain',
+          "Accept-Charset": "utf-8"
+        },
+        body: JSON.stringify({
+          "model": "gpt-3.5-turbo",
+          "message": prompt,
+          "someValue": "trail"
+        }
+        )
+      })
+      let output = await res.json()
+      if(output.status = "success"){
+        let result = output.data
+        console.log(result);
+        let isValidResponse = devPipe.isValidFormat(result)
+        console.log(isValidResponse);
+        if(!isValidResponse){
+          let extractedResposne = devPipe.extractValidJsonObjects(result)
+          let isValidResponse = devPipe.isValidFormat(extractedResposne)
+          console.log("documetn extracted");
+          if (isValidResponse) {
+            result = extractedResposne
+          } else{
+            console.log("failed to make response valid");
+            return
+          }
+          
+          
+        }
+        console.log("response is in valid format");
+        console.log(result);
+        result.forEach(element => {
+          devPipe.saveToCache(element.fileName,element.data)
+        });
+
+        if (output.data) {
+          let node = await tree.createNode(output.data, clickedDoc);
+          console.log(node);
+          const mainElement = document.getElementById("main");
+          const selectedElement = mainElement.querySelector(`[data-id="${clickedDoc}"]`);
+          let bullet = createResNode(node.entityId, node.title)
+          selectedElement.querySelector(".childrenContainer").append(bullet)
+        }
+      }
+      
+           
+      
+      
+
+      
+
+
+    } catch (error) {
+      console.error("Error sending data to OpenAI:", error);
+    }
+
+  }
 
 
   window.addEventListener('beforeunload', function (event) {
@@ -665,11 +796,11 @@ function setupEventListener() {
       }
     } else if (event.target.classList.contains("deleteNode")) {
       tree.deleteNode(event.target.dataset.id)
-    }else if(event.target.classList.contains("openaiButton")){
-      
-    const sidebar = document.getElementById('openaiSidebar');
-    sidebar.classList.toggle('open');
-   
+    } else if (event.target.classList.contains("openaiButton")) {
+
+      const sidebar = document.getElementById('openaiSidebar');
+      sidebar.classList.toggle('open');
+
     }
   });
 
@@ -753,14 +884,19 @@ function setupEventListener() {
 
   // Handle click events for bullet points.
   document.getElementById('doc-content').addEventListener('click', function (e) {
-    clickedDoc = e.target.dataset.id
-    if (e.target.classList.contains('bullet-point')) {
-      // Select the clicked bullet point.
-      let range = document.createRange();
-      range.selectNodeContents(e.target);
-      let selection = window.getSelection();
-      selection.removeAllRanges();
-      selection.addRange(range);
+    if (e.target.classList.contains("title")) {
+
+
+      clickedDoc = e.target.dataset.id
+      console.log(clickedDoc);
+      if (e.target.classList.contains('bullet-point')) {
+        // Select the clicked bullet point.
+        let range = document.createRange();
+        range.selectNodeContents(e.target);
+        let selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      }
     }
   });
 
@@ -776,6 +912,21 @@ function setupEventListener() {
     }
     shareDocument(data);
   });
+
+  document.getElementById("discoverForm").addEventListener("submit", (e) => {
+    console.log(clickedDoc);
+    e.preventDefault()
+    const mainElement = document.getElementById("main");
+    const selectedElement = mainElement.querySelector(`[data-id="${clickedDoc}"]`);
+    const text = selectedElement.innerText;
+    devPipe.promptForm(e, text)
+    document.getElementById("openaiform").addEventListener("submit", (e) => {
+      e.preventDefault()
+      sendToGpt(e)
+    })
+  })
+
+
 
   document.getElementById("logOutBtn").addEventListener("click", logOut)
   document.getElementById("explorer").addEventListener("click", () => {
@@ -801,6 +952,9 @@ async function start() {
 
 window.onload = checkAuthentication;
 document.addEventListener('DOMContentLoaded', start);
+
+
+
 
 
 

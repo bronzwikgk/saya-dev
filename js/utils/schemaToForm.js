@@ -6,6 +6,7 @@ class DynamicForm {
         const title = document.createElement("h2");
         title.textContent = schema.title;
         form.appendChild(title);
+        form.id = schema.id
 
         schema.fields.forEach((field) => {
             switch (field.type) {

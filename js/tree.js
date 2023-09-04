@@ -127,6 +127,8 @@ class TreeEditor {
         return bulletDiv;
     }
 
+
+
     createExpandIcon(visible) {
         const icon = document.createElement('span');
         icon.textContent = '►';

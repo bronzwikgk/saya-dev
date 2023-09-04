@@ -1,0 +1,25 @@
+Act as a javascript developer and write a promptGeneratior method that smarty takes , prompt,action, and prefix as parameter and provide a prompt for openai. 
+List of actions with their respective prefix  - 
+const taskContext = {
+    Product_Manifest_Prompt_Generator: ["Select an option", "Act as a product manager"],
+    Code_Prompt_Generator: [, "Act as a software engineer"],
+    Design_Prompt_generator: [ "Act as a UI/UX designer"],
+    Voice_Prompt_Generator: [ "Act as a voiceover artist"],
+    Idea_Prompt_generator: [ "Act as an innovator"],
+    Music_Prompt_generator: [ "Act as a musician"],
+    Flow_Prompt_Generator: ["Act as a workflow designer"],
+    image_From_Text: [ "Act as a graphic designer"],
+    Generate_code_From_Prompt: [ "Act as a developer"],
+    Product_Manifest: [ "Act as a product owner"],
+    Library_Comparison: [ "Act as a backend developer"],
+    Recommend_Library: [ "Act as a software architect"],
+    Create_Flow: [ "Act as a process engineer"],
+    competitor_comparison: [, "Act as a market analyst"],
+    discovery_doc: [, "Act as a researcher"],
+    Transcribe_Audio: [ "Act as a transcriptionist"],
+    Image_to_html: [", "Act as a frontend developer"]
+};
+
+e.g. 
+"
+input prompt : {Project overview, objective : }
