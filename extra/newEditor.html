@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="chull">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Editor Page</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../beauty/theme.css" />
+    <link rel="stylesheet" href="../beauty/styles.css" />
+    <link rel="stylesheet" href="../beauty/editorPageStyles/editor.css" />
+  </head>
+  <body>
+    <div id="app">
+      <nav class="navbar">
+        <div class="logo-container">
+          <img
+            src="../assets/logo/chull logo and icon v - 0 -1 -Trans -  live.webp"
+            alt="Logo"
+            class="logo"
+          /><i class="ri-arrow-down-s-line"></i>
+        </div>
+        <div class="icons arrows">
+          <i class="ri-arrow-left-line"></i><i class="ri-arrow-right-line"></i>
+        </div>
+        <div class="right-section">
+          <div class="search-component">
+            <div class="search-container">
+              <input type="text" placeholder="Search..." />
+              <button class="filter-btn">
+                <i class="ri-equalizer-line"></i>
+              </button>
+            </div>
+            <div class="filter-form hidden">
+              <button class="close-btn">X</button>
+              <label>Type: <input type="text" placeholder="Type" /></label>
+              <label>Owner: <input type="text" placeholder="Owner" /></label>
+              <label
+                >Has the words:
+                <input type="text" placeholder="Enter words found in the file"
+              /></label>
+              <label
+                >Item Name: <input type="text" placeholder="Item Name"
+              /></label>
+              <label>Date Modified: <input type="date" /></label>
+              <button class="search-btn">Search</button>
+            </div>
+            <div class="search-results hidden"></div>
+          </div>
+          <ul class="nav-links">
+            <li class="dropdown">
+              <a href="#">Action</a>
+              <ul class="dropdown-content">
+                <li class="dropdown">
+                  <a href="#"
+                    >Create <span class="nav-shortcut">Ctrl + N</span></a
+                  >
+                  <ul class="dropdown-content">
+                    <li><a href="#">Action Story</a></li>
+                    <li><a href="#">From Template</a></li>
+                    <li><a href="#">Document</a></li>
+                    <li><a href="#">Form</a></li>
+                    <li><a href="#">Report</a></li>
+                    <li><a href="#">Workflow</a></li>
+                    <li><a href="#">Webpage</a></li>
+                    <li><a href="#">File</a></li>
+                    <li><a href="#">Form</a></li>
+                    <li><a href="#">Report</a></li>
+                    <li><a href="#">Workflow</a></li>
+                    <li><a href="#">Webpage</a></li>
+                    <li><a href="#">Document</a></li>
+                  </ul>
+                </li>
+
+                <li>
+                  <a id="open-file-btn"
+                    >Create New Window
+                    <span class="nav-shortcut">Ctrl + 0</span></a
+                  >
+                </li>
+                <li>
+                  <a id="open-file-btn"
+                    >Open <span class="nav-shortcut">Ctrl + O</span></a
+                  >
+                </li>
+                <li><a id="save-file-btn">Copy As</a></li>
+                <li>
+                  <a id="edit-btn"
+                    >Edit <span class="nav-shortcut">Ctrl + I</span></a
+                  >
+                </li>
+                <li><a id="insert-btn">Insert</a></li>
+                <li>
+                  <a id="export-btn"
+                    >Export <span class="nav-shortcut">Ctrl + E</span></a
+                  >
+                </li>
+                <li>
+                  <a id="print-btn"
+                    >Print <span class="nav-shortcut">Ctrl + P</span></a
+                  >
+                </li>
+                <li><a id="move-trash-btn">Move to Trash</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#">People</a>
+              <ul class="dropdown-content">
+                <li><a href="#">SubLink1</a></li>
+                <li class="dropdown">
+                  <a href="#">SubLink2</a>
+                  <ul class="dropdown-content">
+                    <li><a href="#">NestedLink1</a></li>
+                    <li><a href="#">NestedLink2</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Settings</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Settings</a></li>
+          </ul>
+        </div>
+        <div class="icons icons-menu">
+          <i class="ri-sun-fill"></i><i class="ri-notification-fill"></i>
+          <i class="ri-message-2-fill"></i><i class="ri-user-fill"></i>
+        </div>
+        <div class="hamburger" onclick="toggleSidebar()">
+          <span></span><span></span><span></span>
+        </div>
+      </nav>
+      <main>
+        <div class="sidebar" id="sidebar" onclick="toggleSubMenu(event)">
+          <div class="menu-item addButton">
+            <button class="add-button"><i class="ri-add-line"></i>New</button>
+          </div>
+
+          <div class="menu-item">
+            <a href="#recent"><i class="ri-time-line"></i>Recent</a>
+            <ul class="sub-menu" id="sub1">
+              <li>Sub-option 1.1</li>
+              <li>Sub-option 1.2</li>
+              <li>Sub-option 1.3</li>
+            </ul>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-folder-fill"></i>Draft</a>
+            <ul class="sub-menu" id="sub2">
+              <li>Sub-option 2.1</li>
+              <li>Sub-option 2.2</li>
+            </ul>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-share-forward-fill"></i>Shared with me</a>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-star-line"></i>Starred</a>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-folder-line"></i>My collection</a>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-folder-line"></i>My collection 2</a>
+          </div>
+          <div class="menu-item">
+            <a><i class="ri-folder-line"></i>Trash</a>
+          </div>
+          <div class="nav-items" id="nav-items">
+            <div class="menu-item">
+              <a href="#/explorer"
+                >Explorer<i class="ri-arrow-right-s-line"></i
+              ></a>
+            </div>
+            <div class="menu-item">
+              <a>ROQ Home<i class="ri-arrow-right-s-line"></i></a>
+            </div>
+            <div class="menu-item">
+              <a>Imprint<i class="ri-arrow-right-s-line"></i></a>
+            </div>
+            <div class="menu-item">
+              <a>Getting started<i class="ri-arrow-right-s-line"></i></a>
+              <ul class="sub-menu" id="sub1">
+                <li>Sub-option 1.1</li>
+                <li>Sub-option 1.2</li>
+                <li>Sub-option 1.3</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <div class="tab-bar">
+            <div id="tabContainer">
+              <div class="tab" data-filename="folderData">
+                folderData<span class="close-tab"
+                  ><i class="ri-close-line"></i
+                ></span>
+              </div>
+            </div>
+            <div class="tab-links">
+              <!-- Open Changes Icon -->
+              <i
+                class="ri-git-commit-line icon-button"
+                title="Open Changes"
+              ></i>
+              <!-- Split Editor Icons -->
+              <i
+                class="ri-arrow-up-line icon-button"
+                title="Split Editor Up"
+              ></i>
+              <i
+                class="ri-arrow-down-line icon-button"
+                title="Split Editor Down"
+              ></i>
+              <i
+                class="ri-arrow-left-line icon-button"
+                title="Split Editor Left"
+              ></i>
+              <i
+                class="ri-arrow-right-line icon-button"
+                title="Split Editor Right"
+              ></i>
+              <!-- More Options Icon -->
+              <i class="ri-more-2-fill dropdown"
+                ><ul class="dropdown-content">
+                  <li class="dropdown">
+                    <a href="#"
+                      >Create <span class="nav-shortcut">Ctrl + N</span></a
+                    >
+                  </li>
+
+                  <li>
+                    <a id="open-file-btn"
+                      >Create New Window
+                      <span class="nav-shortcut">Ctrl + 0</span></a
+                    >
+                  </li>
+                  <li>
+                    <a id="open-file-btn"
+                      >Open <span class="nav-shortcut">Ctrl + O</span></a
+                    >
+                  </li>
+                </ul>
+              </i>
+            </div>
+          </div>
+          <div class="breadcrumb-container">
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="#">Category</a></li>
+              <li class="breadcrumb-item"><a href="#">Subcategory</a></li>
+              <li class="breadcrumb-item">Current Page</li>
+            </ul>
+          </div>
+          <div class="editor">
+           
+          </div>
+        </div>
+      </main>
+      <!-- Context Menu for Navbar -->
+<div id="contextMenuNavbar" class="context-menu">
+  
+    <ul>
+    <li class="context-menu-option">Navbar option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Navbar option 1 
+    <ul class="nested-menu">
+    <li>Sub-option 1</li>
+    <li>Sub-option 2</li>
+    </ul></li>
+    <li class="context-menu-option">Navbar option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Navbar option 1 <span class="shortcut">Ctrl + M + D</span></li>
+    <li class="context-menu-option">Navbar option 1 <span class="shortcut">Ctrl+C</span></li>
+    <li class="context-menu-option">Navbar option 1 <span class="shortcut">Ctrl+X</span></li>
+    </ul>
+               
+</div>
+
+<!-- Context Menu for Sidebar -->
+<div id="contextMenuSidebar" class="context-menu">
+  <ul>
+    <li class="context-menu-option">Sidebar option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Sidebar option 1 
+    <ul class="nested-menu">
+    <li>Sub-option 1</li>
+    <li>Sub-option 2</li>
+    </ul></li>
+    <li class="context-menu-option">Sidebar option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Sidebar option 1 <span class="shortcut">Ctrl + M + D</span></li>
+    <li class="context-menu-option">Sidebar option 1 <span class="shortcut">Ctrl+C</span></li>
+    <li class="context-menu-option">Sidebar option 1 <span class="shortcut">Ctrl+X</span></li>
+    </ul>
+  <!-- Your menu items for Sidebar -->
+</div>
+
+<!-- Context Menu for Editor -->
+<div id="contextMenuEditor" class="context-menu">
+  <ul>
+    <li class="context-menu-option">Editor option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Editor option 1 
+    <ul class="nested-menu">
+    <li>Sub-option 1</li>
+    <li>Sub-option 2</li>
+    </ul></li>
+    <li class="context-menu-option">Editor option 1 <span class="shortcut"></span></li>
+    <li class="context-menu-option">Editor option 1 <span class="shortcut">Ctrl + M + D</span></li>
+    <li class="context-menu-option">Editor option 1 <span class="shortcut">Ctrl+C</span></li>
+    <li class="context-menu-option">Editor option 1 <span class="shortcut">Ctrl+X</span></li>
+    </ul>
+</div>
+
+    </div>
+    <script type="module" src="../js/editor.js"></script>
+    <script type="module" src="../function/utils/ContextMenu.js"></script>
+  </body>
+</html>

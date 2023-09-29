@@ -1,0 +1,395 @@
+body {
+  background-color: #F8F8F8;
+  font-family: "Poppins", "Space Grotesk", sans-serif;
+}
+
+.navbar {
+  background: #ECE8E9;
+  border: none;
+}
+
+.right-section{
+    justify-content: flex-end;
+    gap: 1rem;
+}
+.logo-container{
+    cursor: pointer;
+}
+.icons-menu{
+    
+    gap: 1.5rem    
+}
+.dropdown{
+  display: block;
+}
+.dropdown-content li a{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.dropdown-content{
+  width: max-content;
+}
+
+.nav-shortcut{
+  font-size: 0.6rem;
+  font-family: monospace;
+}
+
+.icons-menu i{
+    font-size: 15px;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrows i{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+
+
+.sidebar hr {
+  border: 0.5px dashed #000000bd;
+  margin: 1rem auto;
+}
+
+.sidebar .menu-item a {
+  padding: 0.1rem 0.5rem;
+}
+
+.navbar .icons i {
+  cursor: pointer;
+}
+
+.dropdown-content {
+  background-color: var(--secondary-color);
+  font-family: "Space Grotesk";
+}
+.search-container input {
+  outline: none;
+}
+
+.dropdown-content a:hover {
+  background-color: var(--background-color);
+}
+
+/* /editor area csss */
+.editor {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 2rem - 60px);
+  padding-top:3rem ;
+  padding-left: 3rem;
+}
+
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  font-family: "Space Grotesk";
+  padding: 0.4rem 0.5rem;
+}
+
+.block {
+  width: 400px;
+  position: absolute;
+  background-color: #fbfbfb;
+  /* padding: 10px 0px; */
+  border-radius: 10px;
+  padding-top: 5px;
+  margin-right: 5rem;
+  margin-bottom: 5rem;
+  border: 1px solid rgb(0 0 0 / 12%);
+}
+
+textarea {
+  background: none;
+  font-family: "Poppins";
+  border: none;
+  outline: none;
+  padding: 1rem;
+  width: 100%;
+  height: 70%;
+  resize: none;
+  font-size: 1em;
+}
+
+/* ... [Previous CSS code remains unchanged] ... */
+
+.text-count {
+  position: absolute;
+  bottom: 5px;
+ left: 10px;
+  font-size: 0.8em;
+  font-family: "Space Grotesk";
+  color: #888;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: none;
+}
+
+.controls button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: 200;
+  color: rgba(0, 0, 0, 0.458);
+}
+
+.controls .add-left {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+}
+.controls .add-bottom {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 10px);
+}
+
+button {
+  cursor: pointer;
+}
+
+/* tabs */
+.tab-bar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ece8e94f;
+}
+.tab-bar .tab-links{
+  display: flex;
+  gap: 0.5rem  ;
+  font-size: 1.3rem;
+}
+.tab-links i{
+  cursor: pointer;
+}
+#tabContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.tab {
+  background-color: #FFFFFF;
+  display: inline-block;
+  padding: 10px 1rem;
+  border: 1px solid #ddd;
+  border-radius: 2px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  gap: 2rem;
+  
+  
+}
+
+.active-tab, .active-file {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}
+
+.close-tab {
+  font-weight: bold;  
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  
+}
+
+.content{
+  padding: 0rem;
+}
+
+ /* Breadcrumb Styles */
+ .breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  padding-left: 1rem;
+  color: black;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.breadcrumb-item {
+  padding: 5px 0px;
+  font-size: 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.breadcrumb-item:hover {
+  background-color: #ddd;
+}
+
+/* .breadcrumb-item:not(:last-child)::after {
+  content: ">";
+  margin: 0 5px;
+} */
+
+.breadcrumb-item:last-child {
+ font-weight: bold;
+}
+
+/* block  */
+.block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  border-bottom:  1px solid rgb(0 0 0 / 12%);
+}
+
+.left-section{
+  gap: 5px;
+}
+
+.left-section, .middle-section, .right-section {
+  display: flex;
+  align-items: center;
+  
+}
+
+.dropdown-menu {
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  z-index: 1000;
+  width: 150px;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+.template-dropdown {
+  border: 1px solid #ccc;
+  padding: 5px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.block-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px;
+  border-top: 1px solid #ccc;
+}
+
+.collapse-cell, .expand-cell {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 5px;
+}
+/* context menu */
+
+.context-menu,.nested-menu {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  width: 250px;
+}
+
+.context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu-option ,.nested-menu li {
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.context-menu-option:hover,.nested-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+
+
+.nested-menu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  /* ...other styles... */
+  z-index: 1001;
+ 
+}
+
+li:hover > .nested-menu {
+  display: block;
+}
+
+
+
+.shortcut {
+  color: #878282;
+  font-size: 13px;
+  font-family: monospace;
+}
+
+
+.connection-line {
+  position: absolute;
+  width: 2px;
+  height: 200px;
+  background-color: rgb(13, 13, 11);
+  z-index: -1;
+}
+i{
+  cursor: pointer;
+}
+
+
+
+@media screen and (min-width: 1300px) {
+  main {
+    margin-right: 0px;
+  }
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    transition: left 0.5s ease-in-out;
+    left: -1000px;
+  }
+
+  .sidebar.open {
+    left: 1rem;
+    
+    
+  }
+}
