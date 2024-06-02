@@ -1,0 +1,39 @@
+:root[data-theme="doc"]{
+  
+    --theme-text-color: #181c32;
+    --margin: 0.5rem;
+    --background-color: #ffffff;
+    --secondary-bg: #fff;
+    --sidebar-width: 260px;
+    --nav-height: 60px;
+    --nav-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    --sidebar-text: #181c32;
+    --font-family: 'Inter', sans-serif;
+    --sidebar-hover: #162344;
+    --link-color: #162344;
+    --meatball-color: #8D98AF;
+    --hover-dark: #ccc;
+    --text-color: #181c32;
+    --heading-color: #181c32;
+  
+  
+}
+
+:root[data-theme="chull"] {
+    --primary-color: #3498db;       /* Main color for links and buttons */
+    --secondary-color: #ECF2FA;     /* Secondary color for accents */
+    --background-color: #D9EAFC;    /* Background color for the page */
+    --text-color: #333;             /* Default text color */
+  }
+
+  /* Base Colors */
+:root[data-theme="editor"] {
+    --primary-bg-color: #2d2d2d;
+    --secondary-bg-color: #3e3e3e;
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #b4b4b4;
+    --highlight-color: #4e94ce;
+    --button-color: #555555;
+    --button-hover-color: #4e94ce;
+}

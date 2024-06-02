@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication</title>
+  </head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+  />
+  <style>
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    .form-container {
+      margin-top: 50px;
+      width: 300px;
+      
+    }
+
+    .form-toggle {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .form-toggle button {
+      flex: 1;
+      padding: 10px 0;
+      background-color: transparent;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .form-toggle button.active {
+      border-bottom: 2px solid #333;
+      font-weight: bold;
+    }
+
+    form {
+      display: none;
+    }
+
+    form.active-form {
+      display: block;
+    }
+
+    form input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    form button {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .social-btn {
+      width: 100%;
+      padding: 10px 0;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .social-btn.google {
+      background-color: #4285f4;
+      color: #fff;
+    }
+
+    .social-btn.phone {
+      background-color: #34b7f1;
+      color: #fff;
+    }
+
+    .social-btn.facebook {
+      background-color: #3b5998;
+      color: #fff;
+    }
+    input {
+    box-sizing: border-box;
+}
+button[type="submit"]{
+    margin-bottom: 10px;
+}
+.brand-header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+  </style>
+  <body>
+   
+    
+    <div class="form-container">
+        <div class="brand-header">
+            साया.Alive
+
+        </div>
+      <div class="form-toggle">
+        <button id="signup-btn" class="active">Sign Up</button>
+        <button id="signin-btn">Sign In</button>
+      </div>
+      <form id="signup-form" class="active-form">
+        <input type="email" placeholder="Email" id="email" required />
+        <input type="name" placeholder="Username"  id="username" required />
+        <input type="password" placeholder="Password" id="password" required />
+        <button type="submit">Sign Up</button>
+        <button class="social-btn google">
+          <i class="ri-google-fill"></i>Continue with Google
+        </button>
+        <button class="social-btn phone">
+          <i class="ri-phone-fill"></i>Continue with Phone
+        </button>
+        <button class="social-btn facebook">
+          <i class="ri-facebook-circle-fill"></i>Continue with Facebook
+        </button>
+      </form>
+      <form id="signin-form">
+        <input type="email" placeholder="Email" id="login-email" required />
+        
+        <input type="password" placeholder="Password" id="login-password" required />
+        <button type="submit">Sign In</button>
+        <button class="social-btn google">
+            <i class="ri-google-fill"></i>Continue with Google
+          </button>
+          <button class="social-btn phone">
+            <i class="ri-phone-fill"></i>Continue with Phone
+          </button>
+          <button class="social-btn facebook">
+            <i class="ri-facebook-circle-fill"></i>Continue with Facebook
+          </button>
+          <button class="social-btn facebook">
+            <i class="ri-qr-code-line"></i>Login with QR
+          </button>
+      </form>
+    </div>
+
+    <script>
+      const signupBtn = document.getElementById("signup-btn");
+      const signinBtn = document.getElementById("signin-btn");
+      const signupForm = document.getElementById("signup-form");
+      const signinForm = document.getElementById("signin-form");
+
+      signupBtn.addEventListener("click", function () {
+        signupForm.classList.add("active-form");
+        signinForm.classList.remove("active-form");
+        signupBtn.classList.add("active");
+        signinBtn.classList.remove("active");
+      });
+
+      signinBtn.addEventListener("click", function () {
+        signinForm.classList.add("active-form");
+        signupForm.classList.remove("active-form");
+        signinBtn.classList.add("active");
+        signupBtn.classList.remove("active");
+      });
+    </script>
+    <script type="module" src="./js/auth.js"></script>
+  </body>
+</html>

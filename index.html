@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="keen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans:wght@200;300;400;500;600;700;800&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Abhisek730/cddCdn@main/styles.css">
+    <style>
+      /* loader css */
+.loader-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255 255 255); /* You can adjust the background color and opacity */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensuring the loader appears on top of other elements */
+}
+
+.loader {
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
+    
+</head>
+<body>
+  <div class="loader-wrapper">
+    <div class="loader"></div>
+</div>
+    <div id="app" sidebar-full>
+        <input sidebarinput="" id="slide-sidebar" type="checkbox" role="button" />
+        <label sidebartoggle="" for="slide-sidebar"
+          ><span><i class="ri-arrow-left-line" id="toggle-aside"></i></span
+        ></label>
+        <!-- sidebar -->
+        <aside class="sidebar" id="sidebarPari"></aside>
+        <!-- app body -->
+        <main>
+          <!-- Header -->
+          <header id="navbar" nav nav-fix></header>
+          <!-- main body -->
+          <section class="editor-area" id="editor" mgt-nav pady-2 padx-3>
+            <!-- search  -->
+            <form id="searchComponent" search></form>
+            <!-- Header -->
+            <article id="header" data-flex-btw-cnt-wrp></article>
+            <!-- List Vieew -->
+            <span id="explorerList"> </span>
+            <!-- // Card View -->
+            <div data-flex-center id="explorerCard"></div>
+          </section>
+        </main>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+      <script type="module" src="./handlebar/index.js"></script>
+      <script type="module" src="./js/exp.js"></script>
+</body>
+</html>

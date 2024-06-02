@@ -1,0 +1,77 @@
+
+.list-container-phone {
+    display: none;
+    /* max-width: 800px; */
+    margin: auto;
+}
+
+.list-container-phone .list-item {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 0;
+}
+
+.list-container-phone i {
+    flex: 0 0 40px; /* fixed width for the icon */
+    width: 40px;
+    height: 40px;
+    font-size: 3rem;
+    margin-right: 20px;
+}
+
+.list-container-phone .item-info {
+    flex: 1;
+}
+
+.list-container-phone .item-name {
+    font-size: 1.1em;
+    margin-bottom: 5px;
+}
+
+.list-container-phone .item-meta {
+    font-size: 0.9em;
+    color: #757575;
+}
+
+.list-container-phone .item-size {
+    margin-left: 20px;
+    color: #757575;
+}
+
+
+.list-container-desk {
+    display: none;
+    /* max-width: 1000px; */
+    margin: 0 auto;
+    /* border: 1px solid #e0e0e0; */
+    background-color: #fff;
+}
+
+.list-container-desk .list-header,.list-container-desk .list-item {
+    display: grid;
+    grid-template-columns: 50px 1fr 1fr 1.5fr 100px;
+    align-items: center;
+    padding:5px 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.list-container-desk .list-header p {
+    font-weight: 600;
+    color: #5f6368;
+}
+
+.list-container-desk i {
+    width: 30px;
+    height: 30px;
+    font-size: 1.5rem;
+}
+
+.list-container-desk .item-name,.list-container-desk  .item-owner,.list-container-desk  .item-last-modified, .list-container-desk .item-size {
+    
+    color: #202124;
+}
+
+.list-container-desk .item-owner,.list-container-desk  .item-last-modified {
+    color: #5f6368;
+}

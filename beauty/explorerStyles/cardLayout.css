@@ -1,0 +1,74 @@
+/* Card Container */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Provides consistent space between cards */
+    justify-content: center;
+    padding: 1rem;
+    cursor: pointer;
+}
+
+/* Individual Card */
+.card-item {
+    background-color: #EDF2FC;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* subtle shadow for elevation */
+    border-radius: 8px;
+    padding: 15px;
+    width: 200px; /* Adjust this as needed */
+    transition: transform 0.3s ease;
+}
+
+.card-item:hover {
+    transform: translateY(-5px); /* subtle lift on hover */
+    background-color: rgba(0, 0, 0, 0.136);
+}
+
+/* Card Icon */
+.card-container i {
+    font-size: 4rem;
+    display: block; /* so it takes up the full width of its container */
+    text-align: center; /* centers the icon */
+    margin:  auto;
+    margin-bottom: 15px; /* space beneath the icon */
+    ;
+}
+
+/* Card Info */
+.card-info {
+    margin-bottom: 10px; /* Space below the card info before the card size */
+}
+
+.card-name {
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.card-meta {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Card Size */
+.card-size {
+    font-size: 0.9em;
+    color: #666;
+    text-align: left; /* Centers the size text */
+}
+
+/* Responsive Adjustments */
+@media (min-width: 768px) {
+    .card-container {
+        justify-content: flex-start;
+    }
+
+    .card-item {
+        flex: 0 0 calc(33.33% - 20px); /* Three cards per row subtracting the gap */
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-item {
+        flex: 0 0 calc(25% - 20px); /* Four cards per row subtracting the gap */
+    }
+}

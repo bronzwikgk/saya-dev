@@ -1,0 +1,596 @@
+@import url(./docPageStyles/breadCrumb.css);
+@import url(./docPageStyles/rightSidebar.css);
+@import url(./explorerStyles/listLayout.css);
+@import url(./explorerStyles/cardLayout.css);
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans','Poppins', sans-serif;
+
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensures navbar is above other content */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  
+  height: 40px;
+  margin-right: 10px;
+}
+
+.logo-name {
+  color: black;
+  font-size: 1.2rem;
+  margin-left: 1rem;
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.nav-links li a {
+  
+  color: black;
+  text-decoration: none;
+  padding: 5px 10px;
+}
+
+/* .nav-links li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+} */
+
+.search-container {
+  display: flex;
+  align-items: center;
+  
+}
+
+
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+  
+}
+
+.icons img {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.icons i {
+  font-size: 22px;
+  cursor: pointer;
+  
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background-color: black;
+}
+
+/* ... [Previous CSS code remains unchanged] ... */
+
+main {
+  display: flex;
+  margin-left: 250px; /* Assuming the width of the sidebar is 250px */
+  padding-top: 60px; /* Assuming the height of the navbar is 60px */
+}
+
+/* Class to show the nav links */
+.show-nav {
+  right: 0;
+}
+
+/* sidbar */
+
+.sidebar {
+  width: 250px;
+  /* background-color: #333; */
+  background-color: #ffffff;
+  color: black;
+  padding: 0.5rem;
+  height: 100vh;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  padding-top: 80px;
+}
+.sidebar h4 {
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+  padding: 0rem 0.5rem;
+}
+.menu-item {
+  /* padding: 10px 00px; */
+  cursor: pointer;
+  margin: 0rem 1rem;
+}
+.addButton{
+  margin-bottom: 1rem;
+}
+.menu-item > a {
+  display: flex;
+  /* justify-content: space-between; */
+  justify-content: flex-start;
+  gap: 0.5rem  ;
+  font-size: 14px;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: inherit;
+}
+.menu-item a:hover {
+  background-color: rgba(0, 0, 0, 0.081);
+}
+
+.menu-item a:active{
+  background-color: #C2E7FF;
+}
+
+
+
+
+
+/* .menu-item:hover {
+    background-color: #55555565;
+} */
+
+.sub-menu {
+  list-style-type: none;
+  margin-left: 12px;
+  /* margin-top: 5px; */
+  padding-left: 10px;
+
+  border-left: 1px solid #00000030;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.sub-menu.open {
+  max-height: 150px; /* This value can be adjusted based on the expected maximum height of your submenus */
+}
+
+.sub-menu li {
+  padding: 5px 0;
+}
+
+.nav-items{
+  display: none;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+/* ... [Sidebar and previous CSS code remains unchanged] ... */
+
+.content {
+  flex: 1;
+  padding: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  overflow: auto;
+}
+
+.content h1,
+.content h2,
+.content h3 {
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+.content h1 {
+  font-size: 3rem;
+}
+.content h2 {
+  font-weight: 500;
+  font-size: 2rem;
+  padding-bottom: 5px;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #dddddd9d;
+}
+.content h3{
+    font-weight: 500;
+}
+ol {
+  margin-left: 1rem;
+  margin-top: 0.3rem;
+}
+ol li{
+  padding: 0.4rem ;
+}
+
+/* pre.language-javascript {
+  background-color: #F2F7FC;
+  
+  
+  overflow-x: auto;
+} */
+
+code {
+  font-family: "Courier New", Courier, monospace;
+}
+
+h2.light{
+  font-weight: 200;
+  border: none;
+  margin-top: 0;
+}
+
+/* ... [Previous CSS code remains unchanged] ... */
+
+/* ... [Previous CSS code remains unchanged] ... */
+
+/* Styling for the dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  list-style: none;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+.dropdown-content li a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Nested dropdown */
+.dropdown-content .dropdown {
+  position: relative;
+}
+
+.dropdown-content .dropdown .dropdown-content {
+  display: none; /* Hide by default */
+  top: 0;
+  left: 100%;
+  border-radius: 0 5px 5px 0;
+}
+
+.dropdown-content .dropdown:hover .dropdown-content {
+  display: block; /* Show nested dropdown when hovering over its parent */
+}
+
+/* navbar  */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-btn i {
+  font-size: 24px;  /* Adjust this value based on your desired icon size */
+}
+
+
+.filter-form,
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 300px;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-btn {
+  margin-top: 10px;
+}
+
+/* Search Bar and Filter Button */
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  background-color: #EDF2FC;
+  border-radius: 8px ;
+  padding: 4px 8px;
+}
+
+/* Styles for the search container when the input inside it is focused */
+.search-container:focus-within {
+  border-radius: 8px 8px 0px 0px; /* Example border-radius; adjust as needed */
+  background-color: #fff; /* Example background color; adjust as needed */
+}
+.search-container input {
+  border: none;
+  background-color: transparent;
+  padding: 8px;
+  flex-grow: 1;
+  border-radius: 6px;
+  outline: none;
+}
+
+
+
+.filter-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  color: #5f6368; /* Gray color for icon */
+}
+
+.filter-btn i {
+  font-size: 20px;  /* Adjust this value based on your desired icon size */
+}
+
+/* Filter Form */
+.filter-form {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  padding: 10px;
+  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.filter-form label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-form input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #5f6368; /* Gray color for icon */
+}
+
+.search-btn {
+  display: block;
+  background-color: #1a73e8; /* Google blue */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Search Results */
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #fff;
+  border-radius: 0px 0px 8px 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  max-height: 300px; /* Adjust based on your preference */
+  overflow-y: auto;
+}
+.search-component{
+  position: relative;
+  margin-left: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+.search-results {
+  /* ... (existing styles) */
+  
+  opacity: 0; /* Start off as invisible */
+  transform: translateY(-10px); /* Start slightly above the final position */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Transition for both opacity and transform */
+  pointer-events: none; /* Ensure it doesn't interfere with other elements when hidden */
+}
+.search-results:not(.hidden) {
+  opacity: 1; /* Make it visible */
+  transform: translateY(0); /* Move to its actual position */
+  pointer-events: auto; /* Allow interaction */
+}
+
+
+.add-button {
+  display: flex;
+  align-items: center;
+  /* background-color: #1a73e8;  */
+  background-color: #fff;
+  color: black;
+  border: none;
+  padding: 14px 20px 14px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.add-button i {
+  margin-right: 5px; /* Adjust as needed */
+  font-size: 1.5rem;
+}
+
+.content header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toggle-view{
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  
+}
+
+.toggle-view:hover{
+  background-color: #5f63683c;
+  border-radius: 50px;
+  padding: .1rem;
+  display: flex;
+  align-items: center;
+}
+
+
+/* for left sidebar */
+/* @media screen and (min-width: 1300px) {
+main{
+  margin-right: 250px;
+}
+} */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 5px 15px;
+  margin: 0 10px;
+  cursor: pointer;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.pagination button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+  main{
+    margin-left: 0px;
+  }
+  .right-section {
+    display: none;
+  }
+  
+  .sidebar {
+    width: 100%;
+    transition: top 0.5s ease-in-out;
+    top: -1000px;
+    
+  }
+
+  .sidebar.open {
+    top: 0px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+  .nav-items{
+    display: block;
+  }
+}
