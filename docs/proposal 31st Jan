@@ -1,0 +1,27 @@
+- Add Dia manifest
+    - Add Dia Discover Manifest  
+- Rearrange using generator as per a standard folder and file structure.
+- Add drag and drop, rich text editing and ui Templated allowsing users to build pages using drag and drop.
+- All users to export a tree, like a text, yml, json, js, md, docx, folder with files of a site or app
+- Create sample pages
+    - Landing Page
+        - nav 
+        - header
+        - section
+        - Section
+        - CTA
+        - Footer
+    - App ui Shell
+        - Nav Bar
+        - Side bar
+        - Workspace
+            - Form
+            - Explorer
+            - Editor
+            - View
+            - Chat
+            - Status
+        Footer
+    - Profile
+    - Dashboard
+- Add flow chart functionality
